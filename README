@@ -1,1 +1,14 @@
-This is project to authomatically restore files at files.mail.ru
+This project is created for the purpose of automatisation of files' restoring procees at web-site files.mail.ru.
+
+The program is searching for "cfg.xml" in the root folder, which contains logins & passwords of the accounts. It has the following structure:
+
+<root>
+	<account>
+		<login />
+		<password />
+	</account>
+	<account>
+		<login2 />
+		<password2 />
+	</account>
+<root>

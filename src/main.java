@@ -45,7 +45,6 @@ public class main {
 			Node nNode = nList.item(temp);
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				eElement = (Element) nNode;
-				//driver = new FirefoxDriver();
 				driver = new HtmlUnitDriver();
 				driver.get("http://files.mail.ru/");
 				
@@ -54,14 +53,9 @@ public class main {
 				
 				login.sendKeys(getTagValue("login", eElement));
 				pass.sendKeys(getTagValue("password", eElement));
-				driver.findElement(By.xpath("//input[@value='Войти']")).click();
-				//WebElement filesC = driver.findElement(By.xpath("//*[@id='ffoldercnt4']"));
-				//String in = filesC.getAttribute("text");
-				//int filesCount = Integer.parseInt(driver.findElement(By.xpath("//*[@id='ffoldercnt4']/text()")).toString());
-				//if (filesCount>0) {
-				
+				driver.findElement(By.xpath("//input[@value='Войти']")).click();				
 				driver.findElement(By.xpath("//a[@href='/ls/4']")).click();
-				filesNumber = driver.findElements(By.xpath("//table[@class='fileList']/tbody/tr")).size();
+				filesNumber = filesCount();
 				if (filesNumber > 0) {
 		    		hasFiles = true;		    		
 		    	} else {
@@ -73,9 +67,10 @@ public class main {
 				while (true == hasFiles) {
 					driver.findElement(By.xpath("//table[@class='fileList']/tbody/tr[3]/td[@class='do']/div/a/img[@alt='[Undelete]']/..")).click();	
 					Thread.sleep(2000);		
-					filesNumber = driver.findElements(By.xpath("//table[@class='fileList']/tbody/tr")).size();
+					filesNumber = filesCount();
 					if (filesNumber > 0) {
-						hasFiles = true;
+						printLog();
+						hasFiles = true;						
 					} else {
 						printLog();
 						hasFiles = false;
@@ -105,5 +100,9 @@ public class main {
 	
 	private static void printLog() {
 		System.out.print("Account " + getTagValue("login", eElement) + " has " + filesNumber + " files\n");
+	}
+	
+	private static int filesCount() {
+		return Integer.parseInt(driver.findElement(By.xpath("//span[@id='ffoldercnt4']")).getText());
 	}
 }
