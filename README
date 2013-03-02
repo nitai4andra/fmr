@@ -1,6 +1,6 @@
 This project is created for the purpose of automatisation of files' restoring procees at web-site files.mail.ru.
 
-The program is searching for "cfg.xml" in the root folder, which contains logins & passwords of the accounts. It has the following structure:
+The program is searching for "cfg.xml" in the root directory, which contains logins & passwords of the accounts. It has the following structure:
 
 <root>
 	<account>
@@ -12,3 +12,5 @@ The program is searching for "cfg.xml" in the root folder, which contains logins
 		<password2 />
 	</account>
 <root>
+
+You also will need Selenium Web Driver. It could be found here: http://docs.seleniumhq.org/download/, under the section Selenium Client & WebDriver Language Bindings/Java. It could be placed at the root in "lib" directory, for example.
